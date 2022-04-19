@@ -17,7 +17,10 @@ Include the csvDownloa.js/csvImport.js/csvImport.css file in your site.
 ```
 
 ### Basic Standalone Usage
-Create a file to apply to the html file as follows. Prepare two forms to display and two forms for addition, and add the description 「class =" sortable-item item-template "style =" display: none; 」to the form for addition. Also, prepare an add button and add 「class =" item-insert "」.
+Below is a sample of the text form only.
+Here are some notes. When creating the form you want to apply, create one form for display and one form for addition. Please describe 「class =" sortable-item item-template "style =" display: none; 」in the td tag of the form to be added. Also, prepare an add button and write 「class =" item-insert "」 in the input tag of that button.
+
+Example (Text form only)
 ```html
 <table>
         <thead>
@@ -29,7 +32,7 @@ Create a file to apply to the html file as follows. Prepare two forms to display
             </tr>
         </thead>
         <tbody>
-            <!-- 表示されているフォーム -->
+            <!-- Please prepare a form to display -->
             <tr class="sortable-item">
                 <td>
                     <i></i>
@@ -44,7 +47,7 @@ Create a file to apply to the html file as follows. Prepare two forms to display
                     <input type="text" name="zzz[]"/>
                 </td>
             </tr>
-            <!-- 追加用のフォーム -->
+            <!-- Add the additional form like this. -->
             <tr class="sortable-item item-template" style="display:none;">
                 <td>
                     <i></i>
@@ -62,10 +65,87 @@ Create a file to apply to the html file as follows. Prepare two forms to display
         </tbody>
         <tfoot>
             <tr>
+              <!--Prepare an additional button and describe the 「class="item-insert"」 in input type = "button"-->
                 <td colspan="3">
                     <input type="button" class="item-insert" value="追加" />
                 </td>
             </tr>
         </tfoot>
+</table>
+```
+
+### Others
+This feature also adapts to radio buttons, select boxes and text areas.
+
+Example (For radio buttons, select boxes and text areas)
+```html
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Name</th>
+      <th>Birthplace</th>
+      <th>fee</th>
+      <th>Option</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="sortable-item">
+      <td>
+        <i></i>
+      </td>
+      <td>
+        <input type="text" name="name[]" value="" />
+      </td>
+      <td>
+        <input type="text" name="from[]" value="" />
+      </td>
+      <td>
+        <div>
+          <input type="radio" name="fee[]" value="fee" id="input-radio-fee-fee" />
+          <label for="input-radio-fee-fee">
+            <i></i>交通費</label>
+        </div>
+      </td>
+      <td>
+        <textarea name="option[]"></textarea>
+      </td>
+      <td>
+        <input type="button" class="item-delete" value="削除" />
+      </td>
+    </tr>
+    <tr class="sortable-item item-template" style="display:none;">
+      <td>
+        <i></i>
+      </td>
+      <td>
+        <input type="text" name="name[]" value="" />
+      </td>
+      <td>
+        <input type="text" name="from[]" value="" />
+      </td>
+      <td>
+        <div>
+          <input type="radio" name="fee[]" value="fee" id="input-radio-fee-fee" />
+          <label for="input-radio-fee-fee">
+            <i></i>交通費</label>
+        </div>
+      </td>
+      <td>
+        <textarea name="option[]"></textarea>
+      </td>
+      <td>
+        <input type="button" class="item-delete" value="削除" />
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="6">
+        <input type="button" class="item-insert" value="追加" />
+      </td>
+    </tr>
+  </tfoot>
 </table>
 ```
