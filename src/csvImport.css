@@ -1,0 +1,43 @@
+
+.csvUpload input {
+    display: none;
+  }
+  
+  .csvUpload,.csvDownload{
+    display: inline-block;
+    cursor: pointer;
+    -webkit-appearance: button;
+    padding: 8px 10px;
+    margin-left: 5px;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    border-radius: 3px;
+    -webkit-transition: background-color .2s,border-color .2s;
+    transition: background-color .2s,border-color .2s;
+    font-size: 14px;
+    color: #333;
+    background-color: #f7f7f7;
+    border: 1px solid rgba(0,0,0,.2);
+    -webkit-transition: background-color .2s;
+    transition: background-color .2s;
+  }
+  
+  .csvUpload:hover,.csvDownload:hover {
+    filter: brightness(98%);
+  }
+  
+  .csvUpload:active,.csvDownload:active {
+    border: solid 1px #136FFF;
+    outline: 2px solid #A4C6FF;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .csvUpload,.csvDownload{
+      display: inline-block;
+        padding: 5px 10px;
+  
+    }
+  }
+  
