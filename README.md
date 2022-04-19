@@ -91,6 +91,7 @@ Example (For radio buttons, select boxes and text areas)
     </tr>
   </thead>
   <tbody>
+    <!-- Please prepare a form to display -->
     <tr class="sortable-item">
       <td>
         <i></i>
@@ -115,6 +116,7 @@ Example (For radio buttons, select boxes and text areas)
         <input type="button" class="item-delete" value="削除" />
       </td>
     </tr>
+     <!-- Add the additional form like this. -->
     <tr class="sortable-item item-template" style="display:none;">
       <td>
         <i></i>
@@ -142,6 +144,7 @@ Example (For radio buttons, select boxes and text areas)
   </tbody>
   <tfoot>
     <tr>
+      <!--Prepare an additional button and describe the 「class="item-insert"」 in input type = "button"-->
       <td colSpan="6">
         <input type="button" class="item-insert" value="追加" />
       </td>
