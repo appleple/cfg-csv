@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', function () {
     //すべてを格納する配列
     const prevFormDatas = [];
     //もともとのフォームのキー
-    const keys = [];
+    let keys = [];
     preElement.forEach((prev) => {
       const preform = prev.querySelectorAll("input,select,textarea");
       //一つのフォームごとの入力値を格納する配列
@@ -62,6 +62,7 @@ window.addEventListener('DOMContentLoaded', function () {
       })
       prevFormDatas.push(formValue)
     })
+    keys = keys.filter((element, index) => keys.indexOf(element) === index);
     prevFormDatas.unshift(keys);
     return prevFormDatas;
   }
