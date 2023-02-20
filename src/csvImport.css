@@ -3,6 +3,7 @@
 }
 
 .csvUpload,
+.csvDelete,
 .csvDownload {
   display: inline-block;
   cursor: pointer;
@@ -36,7 +37,6 @@
 }
 
 @media screen and (min-width: 768px) {
-
   .csvUpload,
   .csvDownload {
     display: inline-block;

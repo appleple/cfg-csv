@@ -1,19 +1,17 @@
-window.addEventListener('DOMContentLoaded', function () {
-  //ファイル選択ボタンを追加
-  function CsvButtonAdded() {
-    const refBtn = document.getElementsByClassName("item-insert")[0];
+(function () {
+  function csvButtonAdded(target) {
+    const refBtn = target.querySelector(".item-insert");
     const parentTd = refBtn.parentElement;
     const downloadButton = document.createElement("button");
     downloadButton.setAttribute("type", "button");
     downloadButton.setAttribute("class", "csvDownload");
-    downloadButton.setAttribute("id", "download");
     downloadButton.innerHTML += "CSVダウンロード";
     parentTd.insertBefore(downloadButton, refBtn.nextElementSibling);
   }
-  CsvButtonAdded();
+
   //元々のフォームに入力されていたデータを解析
-  function perseFormDatas() {
-    const preElement = Array.from(document.querySelectorAll(".sortable-item"));
+  function perseFormDatas(target) {
+    const preElement = Array.from(target.querySelectorAll('.sortable-item'));
     //追加用の
     preElement.pop();
     //すべてを格納する配列
@@ -24,11 +22,11 @@ window.addEventListener('DOMContentLoaded', function () {
       const preform = prev.querySelectorAll("input,select,textarea");
       //一つのフォームごとの入力値を格納する配列
       const formValue = [];
-      preform.forEach((form) => {
-        const attribute = form.getAttribute("name")
+      [].forEach.call(preform, (form) => {
+        const attribute = form.getAttribute("name");
         if (attribute != null) {
           //[]削除、キー格納
-          const key = attribute.replace(`[]`, '');
+          const key = attribute.replace(/\[\d*\]/, '');
           keys.push(key);
           //inputタグのデータ取得
           if (form.nodeName === "INPUT") {
@@ -49,7 +47,7 @@ window.addEventListener('DOMContentLoaded', function () {
             //セレクトボックスのデータ取得
           } else if (form.nodeName === "SELECT") {
             const optionElement = form.querySelectorAll("option");
-            optionElement.forEach((option) => {
+            [].forEach.call(optionElement, (option) => {
               if (option.selected) {
                 formValue.push(option.value);
               }
@@ -66,9 +64,9 @@ window.addEventListener('DOMContentLoaded', function () {
     prevFormDatas.unshift(keys);
     return prevFormDatas;
   }
-  const items = perseFormDatas();
+
   //ダウンロードされるCSVファイルの編集
-  function downloadCSV() {
+  function downloadCSV(items) {
     //ダウンロードするCSVファイル名を指定する
     const filename = "download.csv";
     //CSVデータ
@@ -86,7 +84,7 @@ window.addEventListener('DOMContentLoaded', function () {
       //BlobからオブジェクトURLを作成する
       const url = (window.URL || window.webkitURL).createObjectURL(blob);
       //ダウンロード用にリンクを作成する
-      const download = document.createElement("a");
+      const download = document.createElement('a');
       //リンク先に上記で生成したURLを指定する
       download.href = url;
       //download属性にファイル名を指定する
@@ -97,8 +95,22 @@ window.addEventListener('DOMContentLoaded', function () {
       (window.URL || window.webkitURL).revokeObjectURL(url);
     }
   }
-  //ボタンを取得する
-  const download = document.getElementById("download");
-  //ボタンがクリックされたら「downloadCSV」を実行する
-  download.addEventListener("click", downloadCSV, false);
-});
+
+  window.addEventListener('DOMContentLoaded', function () {
+    const groups = document.querySelectorAll('.js-import-csv');
+    if (groups.length > 0) {
+      [].forEach.call(groups, function (group) {
+        csvButtonAdded(group);
+
+        //ボタンを取得する
+        const download = group.querySelector(".csvDownload");
+        //ボタンがクリックされたら「downloadCSV」を実行する
+        download.addEventListener('click', function (e) {
+          e.preventDefault();
+          const items = perseFormDatas(group);
+          downloadCSV(items);
+        });
+      });
+    }
+  });
+})();
