@@ -22,7 +22,7 @@ Here are some notes. When creating the form you want to apply, create one form f
 
 Example (Text form only)
 ```html
-<table>
+<table class="js-import-csv">
         <thead>
             <tr>
                 <th> </th>
@@ -79,7 +79,7 @@ This feature also adapts to radio buttons, select boxes and text areas.
 
 Example (For radio buttons, select boxes and text areas)
 ```html
-<table>
+<table class="js-import-csv">
   <thead>
     <tr>
       <th> </th>
